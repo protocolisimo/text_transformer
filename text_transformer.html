@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="forText">Lorem ipsum dolor sit amet consectetur ad</p>
+
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .forText {
+            margin: 10% auto;
+            text-align: center;
+            font-family: arial;
+            font-size: 100px;
+            text-transform: uppercase;
+            position: relative;
+            font-size: 25px;
+        }
+
+        .forText:hover span {
+            animation-play-state: running;
+        }
+
+            .forText span {
+                animation: transformer linear infinite alternate forwards;
+                animation-play-state: paused;
+                box-sizing: border-box;
+                font-size: 25px;
+                margin: 0 0;
+                position: relative;
+                display: inline-block;
+                transform: rotateY(0deg);
+            }
+            
+
+        @keyframes transformer {
+            from {
+                transform: rotateY(0deg);
+                margin: 0 0;
+                text-shadow: 0 0 1px #000;
+            }
+
+            to {
+                transform: rotateY(45deg);
+                margin: 0 -2px;
+                text-shadow: 0 0 0px #000;
+            }
+        }
+
+    </style>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let 
+            splicedItem = document.querySelector('.forText'),
+            textArray = splicedItem.innerText.split(''),
+            canvasSize = splicedItem.offsetWidth,
+            aniamtionDuration = 1,
+            aniamtionDelayStep = aniamtionDuration / textArray.length,
+            aniamtionDelayTime = aniamtionDelayStep;
+
+        function reAsembler () {
+            splicedItem.innerText = "";
+
+            for ( var i = 0; i < textArray.length; i++ ) {
+                let span = document.createElement( "span" );
+
+                span.className = "semicircle";
+                span.innerHTML = textArray[i];
+                span.style.animationDelay = aniamtionDelayTime + "s";
+                span.style.animationDuration = aniamtionDuration + "s";
+                splicedItem.appendChild( span );
+                aniamtionDelayTime += aniamtionDelayStep;
+            }
+        }
+
+        reAsembler ();
+    });
+</script>
+</html>
